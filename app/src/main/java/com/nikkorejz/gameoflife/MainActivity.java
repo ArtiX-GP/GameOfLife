@@ -31,9 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        FrameLayout mContainer = findViewById(R.id.Container);
         FrameLayout mButtonsContainer = new FrameLayout(this);
         int WIDTH_BUTTON = 75;
 
@@ -55,7 +53,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FrameLayout.LayoutParams mParams2 = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         mParams2.gravity = Gravity.CENTER;
         mButtonsContainer.setLayoutParams(mParams2);
-        mContainer.addView(mButtonsContainer);
+
+        setContentView(mButtonsContainer);
 
         onCreateTimer();
     }
