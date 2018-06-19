@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GameOfLife</string>
+    <string name="play">Play</string>
+    <string name="step">Step</string>
+    <string name="stop">Stop</string>
+    <string name="sample1">Sample 1</string>
+</resources>
