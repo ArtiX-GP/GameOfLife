@@ -38,25 +38,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
 
         // Контейнер с кнопками (ячейками).
-        FrameLayout mButtonsContainer = new FrameLayout(this);
+        LinearLayout mButtonsContainer = new LinearLayout(this);
         
         // Ширина и высота кнопки (Кнопки квадратные)
         int WIDTH_BUTTON = 75;
 
         // Параметры для ячеек.
-        LinearLayout.LayoutParams mParams = new LinearLayout.LayoutParams(WIDTH_BUTTON, WIDTH_BUTTON);
+        LinearLayout.LayoutParams mParams =
+                new LinearLayout.LayoutParams(WIDTH_BUTTON, WIDTH_BUTTON);
         for (int i = 0; i < HEIGHT_GRID; i++) {
             // На каждую строку создаем массив из *WIDTH_GRID* элементов.
             mArray[i] = new boolean[WIDTH_GRID];
+            LinearLayout rowLayout = new LinearLayout(this);
             for (int j = 0; j < WIDTH_GRID; j++) {
                 // Создаем ячейку.
                 ImageButton mButton = new ImageButton(this);
                 // Подключаем слушатель событий.
                 mButton.setOnClickListener(MainActivity.this);
-                
-                // Настройка позиционирования ячейки (добавляем отступы).
-                mParams.leftMargin = WIDTH_BUTTON * j;
-                mParams.topMargin = WIDTH_BUTTON * i;
                 
                 // Применяем изменения.
                 mButton.setLayoutParams(mParams);
@@ -68,18 +66,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mButton.setBackground(ContextCompat.getDrawable(this, R.drawable.background));
                 
                 // Добавляем ячейку в ранее созданный контейнер.
-                mButtonsContainer.addView(mButton);
+                rowLayout.addView(mButton);
             }
+            mButtonsContainer.addView(rowLayout);
         }
 
         // Параметры для контейнера.
-        FrameLayout.LayoutParams mParams2 = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams mParams2 =
+                new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         
         // Центрируем все кнопки по центру.
         mParams2.gravity = Gravity.CENTER;
         
         // Применяем изменения.
         mButtonsContainer.setLayoutParams(mParams2);
+        mButtonsContainer.setOrientation(LinearLayout.VERTICAL);
 
         // Показываем то, что получилось. 
         setContentView(mButtonsContainer);
